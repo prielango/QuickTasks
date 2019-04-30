@@ -25,11 +25,11 @@ $gerimai = [
 
 foreach ($gerimai as $key => $gerimas) {
     if ($gerimas['nuolaida'] > 0) {
-        $gerimas['css_class'] = 'nuolaida';
+        $gerimai[$key]['css_class'] = 'nuolaida';
+        $gerimai[$key]['kaina'] *= (100 - $gerimai[$key]['kaina'] - $gerimai[$key]['kaina']) / 100;
     } else {
-        $gerimas['css_class'] = "benuolaidos";
+        $gerimai[$key]['css_class'] = "benuolaidos";
     }
-    $gerimai[$key] = $gerimas;
 }
 
 ?>
