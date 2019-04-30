@@ -26,12 +26,12 @@ $gerimai = [
 foreach ($gerimai as $key => $gerimas) {
     if ($gerimas['nuolaida'] > 0) {
         $gerimai[$key]['css_class'] = 'nuolaida';
-        $gerimai[$key]['kaina'] *= 1 - $gerimai[$key]['nuolaida'];
+        $gerimai[$key]['kaina_su_nuolaida'] = $gerimas['kaina'] * (1 - $gerimas['nuolaida']);
     } else {
         $gerimai[$key]['css_class'] = "benuolaidos";
     }
 }
-
+var_dump($gerimai);
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -50,6 +50,10 @@ foreach ($gerimai as $key => $gerimas) {
         ul {
             list-style: none;
         }
+
+        li span {
+            text-decoration: line-through;
+        }
     </style>
 </head>
 
@@ -57,7 +61,10 @@ foreach ($gerimai as $key => $gerimas) {
     <ul>
         <?php foreach ($gerimai as $gerimas) : ?>
             <li class=<?php print $gerimas['css_class']; ?>>
-                <?php print "{$gerimas['name']}: {$gerimas['kaina']}"; ?>
+                <?php print "{$gerimas['name']}: <span>{$gerimas['kaina']}</span> "; ?>
+                <?php print
+                    $gerimas['kaina_su_nuolaida']
+                    ?? ""; ?>
             </li>
         <?php endforeach; ?>
     </ul>
