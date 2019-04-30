@@ -31,7 +31,6 @@ foreach ($gerimai as $key => $gerimas) {
         $gerimai[$key]['css_class'] = "benuolaidos";
     }
 }
-var_dump($gerimai);
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -51,7 +50,7 @@ var_dump($gerimai);
             list-style: none;
         }
 
-        li span {
+        .nuolaida span {
             text-decoration: line-through;
         }
     </style>
@@ -61,10 +60,9 @@ var_dump($gerimai);
     <ul>
         <?php foreach ($gerimai as $gerimas) : ?>
             <li class=<?php print $gerimas['css_class']; ?>>
-                <?php print "{$gerimas['name']}: <span>{$gerimas['kaina']}</span> "; ?>
-                <?php print
-                    $gerimas['kaina_su_nuolaida']
-                    ?? ""; ?>
+                <?php print "{$gerimas['name']}: "; ?>
+                <span><?php print $gerimas['kaina']; ?></span>
+                <?php print $gerimas['kaina_su_nuolaida'] ?? ""; ?>
             </li>
         <?php endforeach; ?>
     </ul>
