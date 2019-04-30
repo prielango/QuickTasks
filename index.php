@@ -26,7 +26,7 @@ $gerimai = [
 foreach ($gerimai as $key => $gerimas) {
     if ($gerimas['nuolaida'] > 0) {
         $gerimai[$key]['css_class'] = 'nuolaida';
-        $gerimai[$key]['kaina'] *= (100 - $gerimai[$key]['kaina'] - $gerimai[$key]['kaina']) / 100;
+        $gerimai[$key]['kaina'] *= 1 - $gerimai[$key]['nuolaida'];
     } else {
         $gerimai[$key]['css_class'] = "benuolaidos";
     }
