@@ -1,71 +1,16 @@
 <?php
 
-$gerimai = [
-    [
-        'name' => "Vanduo",
-        'kaina' => 0.6,
-        'nuolaida' => 0,
-    ],
-    [
-        'name' => "Vodka",
-        'kaina' => 10,
-        'nuolaida' => 0.1,
-    ],
-    [
-        'name' => "Cola",
-        'kaina' => 1.5,
-        'nuolaida' => 0.2,
-    ],
-    [
-        'name' => "Sultys",
-        'kaina' => 3,
-        'nuolaida' => 0.25,
-    ]
-];
-
-foreach ($gerimai as $key => $gerimas) {
-    if ($gerimas['nuolaida'] > 0) {
-        $gerimai[$key]['css_class'] = 'nuolaida';
-        $gerimai[$key]['kaina_su_nuolaida'] = $gerimas['kaina'] * (1 - $gerimas['nuolaida']);
-    } else {
-        $gerimai[$key]['css_class'] = "benuolaidos";
+function slot_run($x)
+{
+    $matrix = [];
+    for ($n = 0; $n < $x; $n++) {
+        $row = [];
+        for ($i = 0; $i < $x; $i++) {
+            $row[] = rand(0, 1);
+        }
+        $matrix[] = $row;
     }
+    return $matrix;
 }
-?>
-<!DOCTYPE html>
-<html lang="en">
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Quick Task</title>
-    <style>
-        .nuolaida {
-            font-weight: bold;
-            font-size: 20px;
-        }
-
-        ul {
-            list-style: none;
-        }
-
-        .nuolaida span {
-            text-decoration: line-through;
-        }
-    </style>
-</head>
-
-<body>
-    <ul>
-        <?php foreach ($gerimai as $gerimas) : ?>
-            <li class=<?php print $gerimas['css_class']; ?>>
-                <?php print "{$gerimas['name']}: "; ?>
-                <span><?php print $gerimas['kaina']; ?></span>
-                <?php print $gerimas['kaina_su_nuolaida'] ?? ""; ?>
-            </li>
-        <?php endforeach; ?>
-    </ul>
-</body>
-
-</html>
+var_dump(slot_run(5));
