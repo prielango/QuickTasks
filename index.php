@@ -1,8 +1,9 @@
 <?php
 
-$result = "";
-if (isset($_POST['skaicius'])) {
-    $result = pow($_POST['skaicius'], 2);
+$result = 0;
+
+if (isset($_POST['dideja'])) {
+    $result = $_POST['dideja'] + 1;
 }
 
 ?>
@@ -18,13 +19,8 @@ if (isset($_POST['skaicius'])) {
 
 <body>
     <form action="/quick_task/" method="POST">
-        <label for="skaicius"></label>
-        <input type="text" id="skaicius" name="skaicius">
-        <button type="submit">Submit</button>
+        <button type="submit" name="dideja" value="<?php print $result; ?>"><?php print $result; ?></button>
     </form>
-    <p>
-        Atsakymas: <?php print $result; ?>
-    </p>
 </body>
 
 </html>
