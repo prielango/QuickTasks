@@ -1,8 +1,31 @@
 <?php
 
-$input = filter_input_array(INPUT_POST, [
-    'vardas' => FILTER_SANITIZE_SPECIAL_CHARS,
-]);
+$formFields = [
+    [
+        'type' => 'text',
+        'name' => 'username',
+        'placeholder' => 'username',
+        'label' => 'Enter username'
+    ],
+    [
+        'type' => 'password',
+        'name' => 'password',
+        'placeholder' => 'password',
+        'label' => 'Enter password'
+    ],
+    [
+        'type' => 'email',
+        'name' => 'email',
+        'placeholder' => 'email',
+        'label' => 'Enter email'
+    ],
+    [
+        'type' => 'submit',
+        'name' => 'submit',
+        'label' => 'Submit'
+    ],
+
+]
 
 ?>
 <!DOCTYPE html>
@@ -16,10 +39,17 @@ $input = filter_input_array(INPUT_POST, [
 </head>
 
 <body>
-    <p><?php print $input['vardas']; ?></p>
     <form method="POST">
-        <input type="text" name="vardas">
-        <button type="submit">Submit</button>
+        <?php foreach ($formFields as $field) : ?>
+            <label>
+                <?php if ($field['type'] === 'submit') : ?>
+                    <button type="submit" name="<?php print $field['name']; ?>"><?php print $field['label']; ?></button>
+                <?php else : ?>
+                    <span><?php print $field['label']; ?></span>
+                    <input type="<?php print $field['type']; ?>" name="<?php print $field['name']; ?>" placeholder="<?php print $field['placeholder']; ?>" />
+                <?php endif; ?>
+            </label>
+        <?php endforeach; ?>
     </form>
 </body>
 
