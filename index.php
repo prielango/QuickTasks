@@ -1,10 +1,8 @@
 <?php
 
-$result = 0;
-
-if (isset($_POST['dideja'])) {
-    $result = $_POST['dideja'] + 1;
-}
+$input = filter_input_array(INPUT_POST, [
+    'vardas' => FILTER_SANITIZE_SPECIAL_CHARS,
+]);
 
 ?>
 <!DOCTYPE html>
@@ -18,8 +16,10 @@ if (isset($_POST['dideja'])) {
 </head>
 
 <body>
-    <form action="/quick_task/" method="POST">
-        <button type="submit" name="dideja" value="<?php print $result; ?>"><?php print $result; ?></button>
+    <p><?php print $input['vardas']; ?></p>
+    <form method="POST">
+        <input type="text" name="vardas">
+        <button type="submit">Submit</button>
     </form>
 </body>
 
