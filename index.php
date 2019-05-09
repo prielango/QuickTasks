@@ -4,19 +4,16 @@ $formFields = [
     'inputs' => [
         'username' => [
             'type' => 'text',
-            'name' => 'username',
             'placeholder' => 'username',
             'label' => 'Enter username'
         ],
         'password' => [
             'type' => 'password',
-            'name' => 'password',
             'placeholder' => 'password',
             'label' => 'Enter password'
         ],
         'email' => [
             'type' => 'email',
-            'name' => 'email',
             'placeholder' => 'email',
             'label' => 'Enter email'
         ],
@@ -24,7 +21,6 @@ $formFields = [
     'buttons' => [
         'submit' => [
             'type' => 'submit',
-            'name' => 'submit',
             'label' => 'Submit'
         ],
     ]
@@ -43,14 +39,14 @@ $formFields = [
 
 <body>
     <form method="POST">
-        <?php foreach ($formFields['inputs'] as $input) : ?>
+        <?php foreach ($formFields['inputs'] as $name => $input) : ?>
             <label>
                 <span><?php print $input['label']; ?></span>
-                <input type="<?php print $input['type']; ?>" name="<?php print $input['name']; ?>" placeholder="<?php print $input['placeholder']; ?>" />
+                <input type="<?php print $input['type']; ?>" name="<?php print $name; ?>" placeholder="<?php print $input['placeholder']; ?>" />
             </label>
         <?php endforeach; ?>
-        <?php foreach ($formFields['buttons'] as $button) : ?>
-            <button type="submit" name="<?php print $button['name']; ?>"><?php print $button['label']; ?></button>
+        <?php foreach ($formFields['buttons'] as $name => $button) : ?>
+            <button type="submit" name="<?php print $name; ?>"><?php print $button['label']; ?></button>
         <?php endforeach; ?>
     </form>
 </body>
